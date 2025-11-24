@@ -1,8 +1,15 @@
+# Build output
+dist/
+.astro/
+
 # Dependencies
 node_modules/
 
-# Build output
-dist/
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
 # Environment
 .env
@@ -10,3 +17,9 @@ dist/
 
 # Certificates
 .docker/traefik/certs/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
