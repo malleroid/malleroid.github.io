@@ -1,0 +1,174 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script is:inline>
+			// Prevent FOUC (Flash of Unstyled Content)
+			const getTheme = () => {
+				if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+					return localStorage.getItem("theme");
+				}
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					return "dark";
+				}
+				return "light";
+			};
+
+			const theme = getTheme();
+			if (theme === "dark") {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+		</script>
+	</head>
+	<body
+		class="min-h-screen font-sans transition-colors duration-300 bg-gradient-animated text-gray-100 dark:text-gray-100"
+	>
+		<button
+			id="theme-toggle"
+			class="fixed top-4 right-4 p-3 rounded-full bg-gray-800/50 dark:bg-gray-700/50 hover:bg-gray-700/70 dark:hover:bg-gray-600/70 backdrop-blur-sm transition-all duration-300 z-50"
+			aria-label="Toggle theme"
+		>
+			<svg
+				id="theme-toggle-dark-icon"
+				class="w-6 h-6 hidden"
+				fill="currentColor"
+				viewBox="0 0 20 20"
+			>
+				<path
+					d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+				></path>
+			</svg>
+			<svg
+				id="theme-toggle-light-icon"
+				class="w-6 h-6 hidden"
+				fill="currentColor"
+				viewBox="0 0 20 20"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+					clip-rule="evenodd"></path>
+			</svg>
+		</button>
+		<slot />
+		<script>
+			const themeToggleBtn = document.getElementById("theme-toggle");
+			const themeToggleDarkIcon = document.getElementById(
+				"theme-toggle-dark-icon",
+			);
+			const themeToggleLightIcon = document.getElementById(
+				"theme-toggle-light-icon",
+			);
+
+			function updateIcons(isDark: boolean) {
+				if (themeToggleLightIcon && themeToggleDarkIcon) {
+					themeToggleLightIcon.classList.toggle("hidden", isDark);
+					themeToggleDarkIcon.classList.toggle("hidden", !isDark);
+				}
+			}
+
+			// Initial icon state
+			const isDark = document.documentElement.classList.contains("dark");
+			updateIcons(isDark);
+
+			themeToggleBtn?.addEventListener("click", () => {
+				document.documentElement.classList.toggle("dark");
+
+				const isDarkNow = document.documentElement.classList.contains("dark");
+				localStorage.setItem("theme", isDarkNow ? "dark" : "light");
+				updateIcons(isDarkNow);
+			});
+		</script>
+	</body>
+	<style>
+		@keyframes gradient {
+			0%,
+			100% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+		}
+
+		@keyframes fade-in {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes fade-in-up {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.bg-gradient-animated {
+			background: linear-gradient(
+				-45deg,
+				#1a1a2e,
+				#16213e,
+				#0f3460,
+				#1a1a2e
+			);
+			background-size: 400% 400%;
+			animation: gradient 15s ease infinite;
+		}
+
+		:root:not(.dark) .bg-gradient-animated {
+			background: linear-gradient(
+				-45deg,
+				#ffeaa7,
+				#fab1a0,
+				#a29bfe,
+				#74b9ff,
+				#ffeaa7
+			);
+			background-size: 400% 400%;
+			animation: gradient 15s ease infinite;
+		}
+
+		.animate-fade-in {
+			animation: fade-in 0.8s ease-out forwards;
+		}
+
+		.animate-fade-in-up {
+			opacity: 0;
+			animation: fade-in-up 0.8s ease-out forwards;
+		}
+
+		.animation-delay-100 {
+			animation-delay: 0.1s;
+		}
+
+		.animation-delay-200 {
+			animation-delay: 0.2s;
+		}
+
+		.animation-delay-300 {
+			animation-delay: 0.3s;
+		}
+	</style>
+</html>
