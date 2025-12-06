@@ -1,6 +1,8 @@
 ---
 const currentPath = Astro.url.pathname;
+// biome-ignore lint/correctness/noUnusedVariables: Used in template class binding
 const isHome = currentPath === "/";
+// biome-ignore lint/correctness/noUnusedVariables: Used in template class binding
 const isAbout = currentPath === "/about" || currentPath === "/about/";
 ---
 
