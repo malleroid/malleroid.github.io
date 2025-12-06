@@ -1,11 +1,15 @@
 ---
+// biome-ignore lint/correctness/noUnusedImports: Used in template
 import { ViewTransitions } from "astro:transitions";
+// biome-ignore lint/correctness/noUnusedImports: Used in template
 import Header from "../components/Header.astro";
 
+// biome-ignore lint/correctness/noUnusedVariables: Astro Props type definition
 interface Props {
 	title: string;
 }
 
+// biome-ignore lint/correctness/noUnusedVariables: Used in template title tag
 const { title } = Astro.props;
 ---
 
