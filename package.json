@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.15",
-    "@unocss/astro": "66.6.5",
-    "@unocss/reset": "66.6.5",
-    "unocss": "66.6.5"
+    "@unocss/astro": "66.6.6",
+    "@unocss/reset": "66.6.6",
+    "unocss": "66.6.6"
   }
 }
