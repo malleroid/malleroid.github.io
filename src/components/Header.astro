@@ -1,8 +1,6 @@
 ---
 const currentPath = Astro.url.pathname;
-// biome-ignore lint/correctness/noUnusedVariables: Used in template class binding
 const isHome = currentPath === "/";
-// biome-ignore lint/correctness/noUnusedVariables: Used in template class binding
 const isAbout = currentPath === "/about" || currentPath === "/about/";
 ---
 
@@ -39,6 +37,7 @@ const isAbout = currentPath === "/about" || currentPath === "/about/";
 
 		<div>
 			<button
+			type="button"
 			id="theme-toggle"
 			class="p-2 rounded-full hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-300"
 			aria-label="Toggle theme"
@@ -48,6 +47,7 @@ const isAbout = currentPath === "/about" || currentPath === "/about/";
 				class="w-6 h-6 hidden text-gray-900 dark:text-gray-100"
 				fill="currentColor"
 				viewBox="0 0 20 20"
+				aria-hidden="true"
 			>
 				<path
 					d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
@@ -58,6 +58,7 @@ const isAbout = currentPath === "/about" || currentPath === "/about/";
 				class="w-6 h-6 hidden text-gray-900 dark:text-gray-100"
 				fill="currentColor"
 				viewBox="0 0 20 20"
+				aria-hidden="true"
 			>
 				<path
 					fill-rule="evenodd"
