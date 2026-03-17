@@ -8,6 +8,7 @@ on:
       - "**/*.js"
       - "**/*.mjs"
       - "**/*.json"
+      - "**/*.astro"
       - "biome.json"
       - "bun.lock"
       - ".github/workflows/lint.yaml"
