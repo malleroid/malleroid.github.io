@@ -1,6 +1,6 @@
 services:
   traefik:
-    image: traefik:v3.6@sha256:5d1de6bc6984699e4447787a0e7904437aaea542fecf0fccb79c8c743c7248c8
+    image: traefik:v3.6@sha256:f2643fcbc11d5d9b0f728fa3095bca46957c939201f4fde0e54828dc1d76b54a
     command:
       - "--api.insecure=true"
       - "--providers.docker=true"
