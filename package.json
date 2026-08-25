@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "@biomejs/biome": "2.5.9",
+    "@biomejs/biome": "2.5.10",
     "@unocss/astro": "66.8.0",
     "@unocss/reset": "66.8.0",
     "typescript": "6.0.3",
