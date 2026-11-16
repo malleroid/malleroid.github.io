@@ -20,7 +20,7 @@
     "@biomejs/biome": "2.6.7",
     "@unocss/astro": "66.13.0",
     "@unocss/reset": "66.13.0",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "unocss": "66.13.0"
   }
 }
